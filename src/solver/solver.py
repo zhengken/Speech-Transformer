@@ -109,11 +109,12 @@ class Solver(object):
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
                 file_path = os.path.join(self.save_folder, self.model_path)
-                torch.save(self.model.serialize(self.model, self.optimizer, epoch + 1,
-                                                self.LFR_m, self.LFR_n,
-                                                tr_loss=self.tr_loss,
-                                                cv_loss=self.cv_loss),
-                           file_path)
+                #torch.save(self.model.serialize(self.model, self.optimizer, epoch + 1,
+                #                                self.LFR_m, self.LFR_n,
+                #                                tr_loss=self.tr_loss,
+                #                                cv_loss=self.cv_loss),
+                #           file_path)
+                torch.save(self.model, file_path)
                 print("Find better validated model, saving to %s" % file_path)
 
             # visualizing loss using visdom

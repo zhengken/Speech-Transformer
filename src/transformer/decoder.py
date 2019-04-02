@@ -64,8 +64,8 @@ class Decoder(nn.Module):
         ys_out = [torch.cat([y, eos], dim=0) for y in ys]
         # padding for ys with -1
         # pys: utt x olen
-        ys_in_pad = pad_list(ys_in, self.eos_id)
-        ys_out_pad = pad_list(ys_out, IGNORE_ID)
+        ys_in_pad = pad_list(ys_in, self.eos_id, padded_input.size(1))
+        ys_out_pad = pad_list(ys_out, IGNORE_ID, padded_input.size(1))
         assert ys_in_pad.size() == ys_out_pad.size()
         return ys_in_pad, ys_out_pad
 

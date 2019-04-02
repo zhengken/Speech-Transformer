@@ -136,6 +136,7 @@ def main(args):
     print(model)
     model.cuda()
     # optimizer
+    model = torch.nn.DataParallel(model, device_ids=[0,1,2,3])
     optimizier = TransformerOptimizer(
         torch.optim.Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09),
         args.k,
